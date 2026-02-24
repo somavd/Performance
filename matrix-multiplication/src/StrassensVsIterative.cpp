@@ -14,7 +14,11 @@ using namespace chrono;
 /* ================= RANDOM MATRIX ================= */
 
 Matrix generateMatrix(int n) {
-    Matrix mat(n, vector<long long>(n));
+    Matrix mat;
+    mat.reserve(n);
+    for (int i = 0; i < n; i++) {
+        mat.emplace_back(n);
+    }
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             mat[i][j] = rand() % 10;  // values 0-9
@@ -25,7 +29,11 @@ Matrix generateMatrix(int n) {
 
 Matrix classicalMultiply(const Matrix &A, const Matrix &B) {
     int n = A.size();
-    Matrix C(n, vector<long long>(n, 0));
+    Matrix C;
+    C.reserve(n);
+    for (int i = 0; i < n; i++) {
+        C.emplace_back(n, 0);
+    }
 
     for (int i = 0; i < n; i++)
         for (int k = 0; k < n; k++)
@@ -65,7 +73,7 @@ int main() {
     }
     
     ofstream outFile("results/output_data.csv", ios::app);
-    outFile << "Optimized";
+    outFile << "Optimized + Reserve";
     for (int i = 0; i < powers; i++) {
         outFile << "," << results[i] / trials;
     }
