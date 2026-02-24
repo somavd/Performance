@@ -36,8 +36,8 @@ Matrix classicalMultiply(const Matrix &A, const Matrix &B) {
     }
 
     for (int i = 0; i < n; i++)
-        for (int k = 0; k < n; k++)
-            for (int j = 0; j < n; j++)
+        for (int j = 0; j < n; j++)
+            for (int k = 0; k < n; k++)
                 C[i][j] += A[i][k] * B[k][j];
 
     return C;
@@ -73,7 +73,7 @@ int main() {
     }
     
     ofstream outFile("results/output_data.csv", ios::app);
-    outFile << "Optimized + Reserve";
+    outFile << "Optimized + Reserve + ijk loop order";
     for (int i = 0; i < powers; i++) {
         outFile << "," << results[i] / trials;
     }
