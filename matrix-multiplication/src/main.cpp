@@ -64,14 +64,8 @@ int main() {
         }
     }
     
-    ofstream outFile("results/output_data.csv");
-    outFile.clear();
-    outFile << "Name";
-    for(int i = 0; i < powers; i++) {
-        outFile << "," << (1 << (i + 1));
-    }
-    outFile << "\n";
-    outFile << "Classical";
+    ofstream outFile("results/output_data.csv", ios::app);
+    outFile << "Optimized";
     for (int i = 0; i < powers; i++) {
         outFile << "," << results[i] / trials;
     }

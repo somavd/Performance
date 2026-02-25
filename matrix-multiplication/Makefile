@@ -1,7 +1,8 @@
 # ===== CONFIG =====
 CXX = g++
+CXXFLAGS = -O3 -march=native -flto -std=c++17
 SRC = src/main.cpp
-OUT = build/matrix_multiplication
+OUT = build/matrix_multiplication_opt
 
 # ===== DEFAULT TARGET =====
 all: $(OUT)
@@ -9,7 +10,7 @@ all: $(OUT)
 # ===== BUILD RULE =====
 $(OUT): $(SRC)
 	mkdir -p build
-	$(CXX) $(SRC) -o $(OUT)
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(OUT)
 
 # ===== CLEAN =====
 clean:
