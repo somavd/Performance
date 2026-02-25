@@ -6,31 +6,32 @@
 #include <ctime>
 #include <chrono>
 #include <fstream>
+#include <cmath>
 using namespace std;
 
-using Matrix = vector<vector<long long>>;
+using Matrix = vector<long long>;
 using namespace chrono;
 
 /* ================= RANDOM MATRIX ================= */
 
 Matrix generateMatrix(int n) {
-    Matrix mat(n, vector<long long>(n));
+    Matrix mat(n*n);
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            mat[i][j] = rand() % 10;  // values 0-9
+            mat[i*n + j] = rand() % 10;  // values 0-9
     return mat;
 }
 
 /* ================= CLASSICAL MULTIPLICATION ================= */
 
 Matrix classicalMultiply(const Matrix &A, const Matrix &B) {
-    int n = A.size();
-    Matrix C(n, vector<long long>(n, 0));
+    int n = sqrt(A.size());
+    Matrix C(n*n, 0);
 
     for (int i = 0; i < n; i++)
         for (int k = 0; k < n; k++)
             for (int j = 0; j < n; j++)
-                C[i][j] += A[i][k] * B[k][j];
+                C[i*n + j] += A[i*n + k] * B[k*n + j];
 
     return C;
 }
@@ -65,7 +66,7 @@ int main() {
     }
     
     ofstream outFile("results/output_data.csv", ios::app);
-    outFile << "Optimized + ikj loop order";
+    outFile << "Optimized + ikj loop order + array memory access";
     for (int i = 0; i < powers; i++) {
         outFile << "," << results[i] / trials;
     }

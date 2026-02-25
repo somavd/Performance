@@ -2,7 +2,7 @@
 CXX = g++
 CXXFLAGS = -O3 -march=native -flto -std=c++17
 SRC = src/main.cpp
-OUT = build/matrix_multiplication_opt_ikj_loop_order
+OUT = build/matrix_multiplication_opt_ikj_loop_order_array_memory_access
 
 # ===== DEFAULT TARGET =====
 all: $(OUT)
