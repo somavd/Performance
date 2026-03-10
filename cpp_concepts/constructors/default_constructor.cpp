@@ -21,14 +21,21 @@ private:
     uint32_t baud_rate;
 };
 
+void uart_consumer(uart u) {
+    cout<<"Function "<<__func__<<" is called with baud_rate: "<<u.get_baud_rate()<<endl;
+}
+
 int main(){
     {
         uart u(115200);
-        cout<<"Baud rate: "<<u.get_baud_rate()<<endl;
+        cout<<"Function "<<__func__<<" is called with baud_rate: "<<u.get_baud_rate()<<endl;
     }
     
     uart u2;
-    cout<<"Baud rate: "<<u2.get_baud_rate()<<endl;
+    cout<<"Function "<<__func__<<" is called with baud_rate: "<<u2.get_baud_rate()<<endl;
+    
+    uart_consumer(u2);
+    uart_consumer(12345);
     
     return 0;
 }
